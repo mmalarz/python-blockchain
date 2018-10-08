@@ -12,6 +12,16 @@ class Block:
         self.nonce = 0
         self.hash = self.calculate_hash()
 
+    def __repr__(self):
+        return (
+            f'Block(index={self.index}, '
+            f'timestamp={self.timestamp}, '
+            f'transactions={self.transactions}, '
+            f'previous_hash={self.previous_hash}, '
+            f'hash={self.hash}, '
+            f'nonce={self.nonce})'
+        )
+
     def __str__(self):
         return (
             f'index: {self.index}'
