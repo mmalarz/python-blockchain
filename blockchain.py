@@ -23,7 +23,13 @@ class Block:
         )
 
     def calculate_hash(self):
-        string_to_hash = str(self.index) + str(self.timestamp) + str(self.transactions) + str(self.previous_hash)
+        string_to_hash = (
+            str(self.index) +
+            str(self.timestamp) +
+            str(self.transactions) +
+            str(self.previous_hash) +
+            str(self.nonce)
+        )
         block_hash = hashlib.sha3_256(bytes(string_to_hash, 'utf-8'))
         return block_hash.hexdigest()
 
