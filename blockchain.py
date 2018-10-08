@@ -13,14 +13,14 @@ class Block:
         self.hash = self.calculate_hash()
 
     def __str__(self):
-        return f"""
-index: {self.index}
-timestamp: {self.timestamp}
-transactions: {self.transactions}
-hash: {self.hash}
-previous_hash: {self.previous_hash}
-nonce: {self.nonce}
-"""
+        return (
+            f'index: {self.index}'
+            f'timestamp: {self.timestamp}'
+            f'transactions: {self.transactions}'
+            f'hash: {self.hash}'
+            f'previous_hash: {self.previous_hash}'
+            f'nonce: {self.nonce}'
+        )
 
     def calculate_hash(self):
         string_to_hash = str(self.index) + str(self.timestamp) + str(self.transactions) + str(self.previous_hash)
