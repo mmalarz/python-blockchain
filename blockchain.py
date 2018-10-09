@@ -34,16 +34,26 @@ class Block:
         block_hash = hashlib.sha3_256(bytes(string_to_hash, 'utf-8'))
         return block_hash.hexdigest()
 
+    def mine_block(self, difficulty):
+        current_hash_substring = self.hash[0:difficulty]
+        correct_hash_substring = '0' * difficulty
+
+        while current_hash_substring != correct_hash_substring:
+            self.nonce += 1
+            self.hash = self.calculate_hash()
+            current_hash_substring = self.hash[0:difficulty]
+
 
 class Blockchain:
 
     def __init__(self):
         self.chain = list()
         self.chain.append(Blockchain.create_genesis_block())
+        self.difficulty = 5
 
     def add_block(self, new_block):
         new_block.previous_hash = self.get_latest_block().hash
-        new_block.hash = new_block.calculate_hash()
+        new_block.mine_block(self.difficulty)
         self.chain.append(new_block)
 
     def get_latest_block(self):
