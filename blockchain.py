@@ -14,22 +14,13 @@ class Block:
 
     def __repr__(self):
         return (
-            f'Block(index={self.index}, '
+            f'Block('
+            f'index={self.index}, '
             f'timestamp={self.timestamp}, '
             f'transactions={self.transactions}, '
             f'previous_hash={self.previous_hash}, '
             f'hash={self.hash}, '
             f'nonce={self.nonce})'
-        )
-
-    def __str__(self):
-        return (
-            f'index: {self.index}'
-            f'timestamp: {self.timestamp}'
-            f'transactions: {self.transactions}'
-            f'hash: {self.hash}'
-            f'previous_hash: {self.previous_hash}'
-            f'nonce: {self.nonce}'
         )
 
     def calculate_hash(self):
@@ -78,8 +69,9 @@ class Blockchain:
 
 if __name__ == '__main__':
     blockchain = Blockchain()
-    blockchain.add_block(Block(1, 2, 3, '23fev'))
-    blockchain.add_block(Block(2, 3, 4, 'er34qd'))
+    blockchain.add_block(Block(1, dt.datetime.now(), 'transaction1'))
+    blockchain.add_block(Block(2, dt.datetime.now(), 'transaction2'))
+    blockchain.add_block(Block(3, dt.datetime.now(), 'transaction3'))
 
     for block in blockchain.chain:
         print(block)
